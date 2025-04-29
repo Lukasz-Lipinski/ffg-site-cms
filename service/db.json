@@ -1,0 +1,92 @@
+{
+  "events": [
+    {
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "type": "gig",
+      "title": "Summer Rock Festival",
+      "bands": [
+        "The Rockers",
+        "Metal Band",
+        "Indie Group"
+      ],
+      "eventDate": "2024-07-15",
+      "dateOfInsert": "2024-01-10",
+      "dateOfUpdate": "2024-01-12",
+      "location": "Central Park Arena",
+      "price": 49.99,
+      "start": "2024-07-15T18:00:00",
+      "linkToEvent": "https://example.com/events/summer-rock-festival",
+      "addingEventUser": {
+        "name": "John Smith",
+        "email": "john.smith@example.com"
+      },
+      "linkToBuyTickets": "https://example.com/tickets/summer-rock-festival"
+    },
+    {
+      "id": "223e4567-e89b-12d3-a456-426614174001",
+      "type": "concert",
+      "title": "Classical Night",
+      "bands": [
+        "Symphony Orchestra",
+        "Chamber Ensemble"
+      ],
+      "eventDate": "2024-08-20",
+      "dateOfInsert": "2024-01-15",
+      "dateOfUpdate": "2024-01-15",
+      "location": "Grand Concert Hall",
+      "price": 75.00,
+      "start": "2024-08-20T19:30:00",
+      "linkToEvent": "https://example.com/events/classical-night",
+      "addingEventUser": {
+        "name": "Mary Johnson",
+        "email": "mary.j@example.com"
+      },
+      "linkToBuyTickets": "https://example.com/tickets/classical-night"
+    },
+    {
+      "id": "323e4567-e89b-12d3-a456-426614174002",
+      "type": "festival",
+      "title": "Jazz in the Park",
+      "bands": [
+        "Jazz Quartet",
+        "Blues Band",
+        "Swing Ensemble",
+        "Jazz Orchestra"
+      ],
+      "eventDate": "2024-09-05",
+      "dateOfInsert": "2024-01-20",
+      "dateOfUpdate": "2024-01-22",
+      "location": "City Park",
+      "price": 35.50,
+      "start": "2024-09-05T16:00:00",
+      "linkToEvent": "https://example.com/events/jazz-in-the-park",
+      "addingEventUser": {
+        "name": "Robert Wilson",
+        "email": "r.wilson@example.com"
+      },
+      "linkToBuyTickets": "https://example.com/tickets/jazz-in-the-park"
+    },
+    {
+      "id": "423e4567-e89b-12d3-a456-426614174003",
+      "type": "gig",
+      "title": "Pop Music Night",
+      "bands": [
+        "Pop Stars",
+        "Teen Sensation",
+        "Electronic Duo"
+      ],
+      "eventDate": "2024-10-12",
+      "dateOfInsert": "2024-02-01",
+      "dateOfUpdate": "2024-02-01",
+      "location": "Stadium Arena",
+      "price": 89.99,
+      "start": "2024-10-12T20:00:00",
+      "linkToEvent": "https://example.com/events/pop-music-night",
+      "addingEventUser": {
+        "name": "Sarah Brown",
+        "email": "sarah.b@example.com"
+      },
+      "linkToBuyTickets": "https://example.com/tickets/pop-music-night"
+    }
+  ]
+}
