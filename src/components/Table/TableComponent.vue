@@ -1,7 +1,14 @@
 <template>
-  <VContainer min-height="80%" width="90%">
+  <VContainer width="90%">
     <VTable>
-      <VDataTable :items="data" :headers="headers" no-data-text="Events added">
+      <VDataTable
+        :style="{
+          overflow: 'hidden',
+        }"
+        :items="data"
+        :headers="headers"
+        no-data-text="Events added"
+      >
         <template v-slot:item="{ item }">
           <tr @click="selectedItem = item" class="item">
             <td>{{ item.date }}</td>
@@ -13,15 +20,13 @@
       </VDataTable>
     </VTable>
   </VContainer>
-  <ModalComponent :selected-item="selectedItem" />
 </template>
 
 <script lang="ts" setup>
-import { onBeforeMount, ref } from 'vue'
+import { onBeforeMount, ref, watch } from 'vue'
 import { type DataTableHeader } from 'vuetify/lib/components/VDataTable/types.mjs'
 import { SetHeaders } from './table.service'
 import type { EventType } from './abstract'
-import ModalComponent from '../Modal/ModalComponent.vue'
 
 type TablePropsType = {
   data: EventType[]
@@ -30,10 +35,18 @@ type TablePropsType = {
 const headers = ref<DataTableHeader[]>([])
 const props = defineProps<TablePropsType>()
 const selectedItem = ref<EventType | null>(null)
+const emits = defineEmits(['selectedItem'])
 
 onBeforeMount(() => {
   headers.value = SetHeaders(props.data[0], ['id'])
 })
+
+watch(
+  () => selectedItem.value,
+  () => {
+    emits('selectedItem', selectedItem.value)
+  },
+)
 </script>
 
 <style lang="css" scoped>

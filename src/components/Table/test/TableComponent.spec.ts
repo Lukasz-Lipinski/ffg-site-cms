@@ -1,11 +1,14 @@
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { shallowMount, VueWrapper } from '@vue/test-utils'
 import TableComponent from '../TableComponent.vue'
 import type { EventType } from '../abstract'
 import { SetHeaders } from '../table.service'
+import { VContainer, VDataTable, VTable } from 'vuetify/components'
+import { createVuetify } from 'vuetify'
+import { nextTick } from 'vue'
 
 describe('Testing Table Component', () => {
-  let wrapper: VueWrapper
+  let wrapper: VueWrapper<any>
 
   const mockedData: EventType[] = [
     {
@@ -18,11 +21,32 @@ describe('Testing Table Component', () => {
         name: 'Test User',
       },
     },
+    {
+      id: '987f6543-e21b-12d3-b456-789014174999',
+      type: 'news',
+      title: 'new test title',
+      date: new Date(),
+      user: {
+        email: 'newtest@user.com',
+        name: 'New Test User',
+      },
+    },
   ]
   beforeEach(() => {
     wrapper = shallowMount(TableComponent, {
       props: {
         data: mockedData,
+      },
+      global: {
+        plugins: [
+          createVuetify({
+            components: {
+              VTable,
+              VDataTable,
+              VContainer,
+            },
+          }),
+        ],
       },
     })
   })
@@ -42,6 +66,15 @@ describe('Testing Table Component', () => {
       headers.forEach((header, index) => {
         expect(wrapper.vm.headers[index].title).toStrictEqual(header.title)
       })
+    })
+    it('should emit selected item', async () => {
+      expect(wrapper.emitted('selectedItem')).toBeFalsy()
+      wrapper.vm.selectedItem = mockedData[0]
+
+      await nextTick()
+
+      expect(wrapper.emitted('selectedItem')).toBeTruthy()
+      expect(wrapper.emitted('selectedItem')![0][0]).toStrictEqual(mockedData[0])
     })
   })
 })
