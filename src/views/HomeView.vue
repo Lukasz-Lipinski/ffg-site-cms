@@ -1,24 +1,40 @@
 <template>
   <VContainer>
     <VSkeletonLoader v-if="!events.length && isLoading" type="table" />
-    <TableComponent v-else-if="events.length && !isLoading" :data="events" />
-    <VAlert v-else-if="isError" type="error">{{ isError }}</VAlert>
+    <TableComponent
+      v-else-if="events.length && !isLoading"
+      :data="events"
+      @selected-item="setSeletectItem($event)"
+    />
+    <ErrorComponent v-else-if="errorMsg" :msg="errorMsg" @on-refresh="fetchData" />
+    <VDialog v-model="isOpenedModal">
+      <template #default>
+        {{ selectedItem }}
+      </template>
+    </VDialog>
   </VContainer>
 </template>
 
 <script setup lang="ts">
+import ErrorComponent from '@/components/Error/ErrorComponent.vue'
 import type { EventDetailsBackendType, EventType } from '@/components/Table/abstract'
 import { TransformDataFromBacked } from '@/components/Table/table.service'
 import TableComponent from '@/components/Table/TableComponent.vue'
 import axios from 'axios'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { VAlert, VContainer, VSkeletonLoader } from 'vuetify/components'
 
 const events = ref<EventType[]>([])
-const isError = ref<string | null>(null)
+const errorMsg = ref<string | null>(null)
 const isLoading = ref<boolean>(false)
+const selectedItem = ref<EventType | null>()
+const isOpenedModal = computed(() => !!selectedItem.value)
 
-onMounted(() => {
+function setSeletectItem(item: EventType) {
+  selectedItem.value = item
+}
+
+function fetchData() {
   isLoading.value = true
   axios
     .get<EventDetailsBackendType[]>(`${import.meta.env.VITE_APP_EVENTS_URL}/events`)
@@ -30,8 +46,12 @@ onMounted(() => {
     })
     .catch((err) => {
       console.error('my error', err)
-      isError.value = err.message
+      errorMsg.value = err.message
       isLoading.value = false
     })
+}
+
+onMounted(() => {
+  fetchData()
 })
 </script>
