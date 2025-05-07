@@ -22,7 +22,7 @@ import { TransformDataFromBacked } from '@/components/Table/table.service'
 import TableComponent from '@/components/Table/TableComponent.vue'
 import axios from 'axios'
 import { computed, onMounted, ref } from 'vue'
-import { VAlert, VContainer, VSkeletonLoader } from 'vuetify/components'
+import { VContainer, VSkeletonLoader } from 'vuetify/components'
 
 const events = ref<EventType[]>([])
 const errorMsg = ref<string | null>(null)

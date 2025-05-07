@@ -4,7 +4,7 @@
       <template #prepend></template>
       <template #title>
         <VContainer fluid class="center">
-          <span> Something went wrong </span>
+          <span data-testid="error-title"> Something went wrong </span>
         </VContainer>
       </template>
       <template #text>
@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts" setup>
-import { VAlert, VContainer } from 'vuetify/components'
+import { VAlert, VContainer, VBtn } from 'vuetify/components'
 
 defineProps<{
   msg: string
