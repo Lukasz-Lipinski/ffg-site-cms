@@ -1,5 +1,5 @@
-import { mount, shallowMount, type VueWrapper } from '@vue/test-utils'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { mount, type VueWrapper } from '@vue/test-utils'
+import { beforeEach, describe, expect, it } from 'vitest'
 import ErrorComponent from '../ErrorComponent.vue'
 import { VAlert, VBtn, VContainer } from 'vuetify/components'
 import { nextTick } from 'vue'
@@ -34,7 +34,7 @@ describe('Testing Error Component', () => {
     it('should display msg with #text slot', async () => {
       await nextTick()
       const fullText = `${msg}. Please refresh page to reload data or try again later.`
-      const textSlot = wrapper.findComponent(VAlert).vm.$slots.text()[0]
+      const textSlot = wrapper.findComponent(VAlert).vm.$slots.text!()[0]
 
       expect(textSlot.children).toEqual(fullText)
     })
