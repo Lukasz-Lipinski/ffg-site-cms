@@ -45,7 +45,6 @@ function fetchData() {
       }
     })
     .catch((err) => {
-      console.error('my error', err)
       errorMsg.value = err.message
       isLoading.value = false
     })

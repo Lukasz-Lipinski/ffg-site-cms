@@ -88,5 +88,10 @@
       },
       "linkToBuyTickets": "https://example.com/tickets/pop-music-night"
     }
-  ]
+  ],
+  "login": {
+    "user": "admin",
+    "email": "admin@admin.com",
+    "code": "admin"
+  }
 }

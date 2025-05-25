@@ -14,9 +14,9 @@ export function TransformDataFromBacked(data: EventDetailsBackendType[]): EventT
   )
 }
 
-export const SetHeaders = (events: EventType, whatAviod: (keyof EventType)[]): DataTableHeader[] =>
+export const SetHeaders = (events: EventType, whatAvoid: (keyof EventType)[]): DataTableHeader[] =>
   Object.keys(events)
-    .filter((k) => !whatAviod.includes(k as keyof EventType))
+    .filter((k) => !whatAvoid.includes(k as keyof EventType))
     .map(
       (key) =>
         ({
