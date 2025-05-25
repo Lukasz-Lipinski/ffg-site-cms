@@ -1,5 +1,5 @@
-import { mount, shallowMount, type VueWrapper } from '@vue/test-utils'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { mount, type VueWrapper } from '@vue/test-utils'
+import { beforeEach, describe, expect, it } from 'vitest'
 import ErrorComponent from '../ErrorComponent.vue'
 import { VAlert, VBtn, VContainer } from 'vuetify/components'
 import { nextTick } from 'vue'
