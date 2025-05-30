@@ -23,12 +23,7 @@
 </template>
 
 <script lang="ts" setup>
-import type {
-  EventTypeType,
-  EventType,
-  AddingEventUserType,
-  EventDetailsForBackendType,
-} from '@/components/Table/abstract.ts'
+import type { EventTypeType, EventType } from '@/components/Table/abstract.ts'
 import { ref, defineProps } from 'vue'
 
 const typeInput = ref<EventTypeType>('gig')
