@@ -4,16 +4,10 @@ import LoginFormComponent from '@/components/LoginForm/LoginFormComponent.vue'
 import { createPinia, setActivePinia } from 'pinia'
 import { VBtn, VBtnToggle, VForm, VTextField } from 'vuetify/components'
 import { createVuetify } from 'vuetify'
-import { nextTick, ref } from 'vue'
+import { nextTick } from 'vue'
 import { FormOptions } from '@/components/LoginForm/types.ts'
 import { useUserStore } from '@/stores/user.ts'
-import { CreateNewAccount } from '@/auth/auth.service.ts'
 import { useSnackbarStore } from '@/stores/snackbar.ts'
-
-const mockedUser = {
-  email: 'example@example.com',
-  password: 'XXXXXXXXXXX',
-}
 
 const mockedUserForStore = {
   email: 'test@test.com',

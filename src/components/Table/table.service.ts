@@ -1,7 +1,14 @@
-import type { EventDetailsBackendType, EventType } from './abstract'
+import type {
+  EventFromBackendType,
+  EventType,
+  MerchFromBackendType,
+  NewsFromBackendType,
+} from './abstract'
 import type { DataTableHeader } from 'vuetify'
 
-export function TransformDataFromBacked(data: EventDetailsBackendType[]): EventType[] {
+export function TransformDataFromBacked(
+  data: NewsFromBackendType[] | MerchFromBackendType[] | EventFromBackendType[],
+): EventType[] {
   return data.map(
     (i) =>
       ({

@@ -9,7 +9,14 @@
       </VBtnToggle>
     </div>
     <div class="d-flex justify-center">
-      <VBtn type="submit" :disabled="!isValid" variant="tonal" :color="isValid ? 'secondary' : ''">
+      <VBtn
+        type="submit"
+        :disabled="!isValid || isLoading"
+        :loading="isLoading"
+        variant="tonal"
+        :color="isValid ? 'secondary' : ''"
+      >
+        <template #loader> loading... </template>
         Submit
       </VBtn>
     </div>
@@ -62,19 +69,19 @@ async function onVerify() {
   isLoading.value = true
 
   try {
-  const cred =
-    isRegisterOption.value === FormOptions.Register
-      ? await CreateNewAccount(emailInput.value, passwordInput.value)
-      : await SignInUser(emailInput.value, passwordInput.value)
+    const cred =
+      isRegisterOption.value === FormOptions.Register
+        ? await CreateNewAccount(emailInput.value, passwordInput.value)
+        : await SignInUser(emailInput.value, passwordInput.value)
 
-  if (cred) {
-    userStore.setUser({
-      email: cred.user.email ?? emailInput.value,
-      id: cred.user.uid,
-    })
-  }
+    if (cred) {
+      userStore.setUser({
+        email: cred.user.email ?? emailInput.value,
+        id: cred.user.uid,
+      })
+    }
 
-  isVerified = true
+    isVerified = true
   } catch (e: any) {
     snackbarStore.show({
       color: SnackbarColorType.error,

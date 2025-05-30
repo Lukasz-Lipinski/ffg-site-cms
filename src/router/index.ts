@@ -10,6 +10,15 @@ const router = createRouter({
       path: '/',
       name: 'registration',
       component: RegistrationVueView,
+      beforeEnter: (to, from, next) => {
+        const userStore = useUserStore()
+
+        if (userStore.user.id && from.path === '/') {
+          next({ name: 'home' })
+        }
+
+        next()
+      },
     },
 
     {
@@ -18,13 +27,12 @@ const router = createRouter({
       component: () => import('../views/HomeView.vue'),
       beforeEnter: (to, from, next) => {
         const userStore = useUserStore()
-        console.log("🚀 ~ beforeEnter ~ userStore.user: ", userStore.user);
-       if (userStore.user.id) {
-         next()
-       }
+        if (userStore.user.id) {
+          next()
+        }
 
-       next({name: "registration"})
-      }
+        next({ name: 'registration' })
+      },
     },
   ],
 })

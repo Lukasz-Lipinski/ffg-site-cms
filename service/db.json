@@ -1,4 +1,5 @@
 {
+  "data": {
   "events": [
     {
       "id": "123e4567-e89b-12d3-a456-426614174000",
@@ -89,9 +90,112 @@
       "linkToBuyTickets": "https://example.com/tickets/pop-music-night"
     }
   ],
-  "login": {
-    "user": "admin",
-    "email": "admin@admin.com",
-    "code": "admin"
+  "merch": [
+    {
+      "id": "evt-001",
+      "title": "Advanced TypeScript Workshop",
+      "name": "TypeScript 2024",
+      "price": 299.99,
+      "imageUrl": "https://example.com/images/typescript-workshop.jpg",
+      "linkToBuy": "https://example.com/buy/typescript-workshop",
+      "dateOfInsert": "2024-01-15",
+      "dateOfUpdate": "2024-01-16",
+      "addingEventUser": {
+        "id": "usr-001",
+        "name": "John Doe",
+        "email": "john.doe@example.com"
+      },
+      "productType": "hat",
+      "type": "merch"
+    },
+    {
+      "id": "evt-002",
+      "title": "Web Development Conference",
+      "name": "WebDev Summit",
+      "price": 499.99,
+      "imageUrl": "https://example.com/images/webdev-conf.jpg",
+      "linkToBuy": "https://example.com/buy/webdev-conference",
+      "dateOfInsert": "2024-01-10",
+      "addingEventUser": {
+        "id": "usr-002",
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com"
+      },
+      "productType": "pants",
+      "type": "merch"
+    },
+    {
+      "id": "evt-003",
+      "title": "React Best Practices",
+      "name": "React Mastery",
+      "price": 199.99,
+      "imageUrl": "https://example.com/images/react-seminar.jpg",
+      "dateOfInsert": "2024-01-20",
+      "dateOfUpdate": "2024-01-21",
+      "addingEventUser": {
+        "id": "usr-003",
+        "name": "Bob Wilson",
+        "email": "bob.wilson@example.com"
+      },
+      "productType": "t-shirt",
+      "type": "merch"
+    }
+  ],
+  "news": [
+    {
+        "id": "content-001",
+        "title": "Getting Started with TypeScript",
+        "description": "A comprehensive guide to TypeScript fundamentals, including types, interfaces, and advanced features. Learn how to build scalable applications with TypeScript.",
+        "dateOfInsert": "2024-01-15",
+        "dateOfUpdate": "2024-01-16",
+        "contentUrl": "https://example.com/content/typescript-guide",
+        "addingEventUser": {
+            "id": "usr-001",
+            "name": "John Doe",
+            "email": "john.doe@example.com"
+        },
+        "type": "news"
+    },
+    {
+        "id": "content-002",
+        "title": "Modern JavaScript Development",
+        "description": "Explore modern JavaScript features and best practices. This guide covers ES6+ features, async programming, and modern development workflows.",
+        "dateOfInsert": "2024-01-10",
+        "contentUrl": "https://example.com/content/modern-javascript",
+        "addingEventUser": {
+            "id": "usr-002",
+            "name": "Jane Smith",
+            "email": "jane.smith@example.com"
+        },
+        "type": "news"
+    },
+    {
+        "id": "content-003",
+        "title": "Advanced React Patterns",
+        "description": "Deep dive into advanced React patterns including hooks, context, and performance optimization techniques for building efficient React applications.",
+        "dateOfInsert": "2024-01-20",
+        "dateOfUpdate": "2024-01-21",
+        "contentUrl": "https://example.com/content/react-patterns",
+        "addingEventUser": {
+            "id": "usr-003",
+            "name": "Bob Wilson",
+            "email": "bob.wilson@example.com"
+        },
+        "type": "seminar"
+    },
+    {
+        "id": "content-004",
+        "title": "Cloud Architecture Fundamentals",
+        "description": "Learn the core concepts of cloud architecture, including scalability, reliability, and best practices for cloud-native applications.",
+        "dateOfInsert": "2024-01-22",
+        "contentUrl": "https://example.com/content/cloud-architecture",
+        "addingEventUser": {
+            "id": "usr-004",
+            "name": "Alice Johnson",
+            "email": "alice.johnson@example.com"
+        },
+        "type": "news"
+    }
+]
   }
 }
