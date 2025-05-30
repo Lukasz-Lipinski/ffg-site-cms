@@ -23,13 +23,14 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeMount, ref, watch } from 'vue'
+import { onBeforeMount, onBeforeUpdate, ref, toRef, watch } from 'vue'
 import { type DataTableHeader } from 'vuetify/lib/components/VDataTable/types.mjs'
 import { SetHeaders } from './table.service'
 import type { EventType } from './abstract'
 
 type TablePropsType = {
   data: EventType[]
+  selectedItem: EventType | null
 }
 
 const headers = ref<DataTableHeader[]>([])
@@ -40,6 +41,13 @@ const emits = defineEmits(['selectedItem'])
 onBeforeMount(() => {
   headers.value = SetHeaders(props.data[0], ['id'])
 })
+
+watch(
+  () => props.selectedItem,
+  () => {
+    selectedItem.value = props.selectedItem
+  },
+)
 
 watch(
   () => selectedItem.value,

@@ -3,3 +3,7 @@
 #app {
   font-weight: normal;
 }
+
+html {
+  overflow-y: hidden !important;
+}
