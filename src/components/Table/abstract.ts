@@ -1,5 +1,3 @@
-export type DataType = {}
-
 export type EventType = {
   id: string
   date: Date
@@ -30,7 +28,7 @@ export type AddingEventUserType = {
   email: string
 }
 
-export type EventTypeType = 'gig' | 'news' | 'merch'
+export type EventTypeType = 'events' | 'news' | 'merch'
 
 //fetched from backend
 export type EventFromBackendType = {
