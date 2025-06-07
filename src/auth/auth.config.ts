@@ -12,7 +12,7 @@ const firebaseConfig = {
   projectId: 'ffg-cms',
   storageBucket: 'ffg-cms.firebasestorage.app',
   messagingSenderId: '343295398938',
-  appId: '1:343295398938:web:1ae5d541a90872f01a6da3',
+  appId: import.meta.env.VITE_APP_APP_ID,
   measurementId: 'G-CG3P2XTVKZ',
 }
 

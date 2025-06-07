@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { shallowMount, VueWrapper } from '@vue/test-utils'
 import TableComponent from '../TableComponent.vue'
 import type { EventType } from '../abstract'
@@ -13,7 +13,7 @@ describe('Testing Table Component', () => {
   const mockedData: EventType[] = [
     {
       id: '123e4567-e89b-12d3-a456-426614174000',
-      type: 'gig',
+      type: 'events',
       title: 'test title',
       date: new Date(),
       user: {
