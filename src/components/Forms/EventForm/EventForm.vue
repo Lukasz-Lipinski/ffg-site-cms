@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useForm } from 'vee-validate'
 import type { EventType } from '@/components/Table/abstract'
-import { useSetFormData } from '@/composables/useForm'
+import { useSetFormData } from '@/composables/useForm.ts'
 import { onBeforeMount } from 'vue'
 
 const { formData } = useSetFormData<EventType>()
