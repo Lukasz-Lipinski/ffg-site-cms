@@ -14,6 +14,9 @@
           <template #close-button>
             <VBtn @click="onClose" variant="text" color="error" icon="mdi-close"></VBtn>
           </template>
+          <template #default>
+            <FormSwitcher :form-name="selectedForm!" />
+          </template>
         </ModalForm>
       </template>
     </VDialog>
@@ -22,19 +25,49 @@
 
 <script setup lang="ts">
 import ErrorComponent from '@/components/Error/ErrorComponent.vue'
-import type { BackendDataType, EventFromBackendType, EventType } from '@/components/Table/abstract'
+import type { BackendDataType, EventType } from '@/components/Table/abstract'
 import { TransformDataFromBacked } from '@/components/Table/table.service'
 import TableComponent from '@/components/Table/TableComponent.vue'
 import axios from 'axios'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, provide, type Ref, ref, watch } from 'vue'
 import { VContainer, VSkeletonLoader } from 'vuetify/components'
 import ModalForm from '@/components/Modal/Content/ModalForm.vue'
+import FormSwitcher from '@/components/Forms/FormSwitcher/FormSwitcher.vue'
+import type { FormType } from '@/components/Forms/FormSwitcher/abstracts.ts'
 
 const data = ref<EventType[]>([])
+const allEventsFromBackend = ref<BackendDataType | null>(null)
 const errorMsg = ref<string | null>(null)
 const isLoading = ref<boolean>(false)
 const selectedItem = ref<EventType | null>(null)
+const selectedForm = ref<FormType | null>(null)
+
 const isOpenedModal = computed(() => !!selectedItem.value)
+
+provide<Ref<EventType | null>>('selectedItem', selectedItem)
+provide<Ref<BackendDataType | null>>('allEvents', allEventsFromBackend)
+
+watch(
+  () => selectedItem.value,
+  (val) => {
+    if (val) {
+      switch (val!.type) {
+        case 'events':
+          selectedForm.value = 'EventForm'
+          break
+        case 'merch':
+          selectedForm.value = 'MerchForm'
+          break
+        case 'news':
+          selectedForm.value = 'NewsForm'
+          break
+        default:
+          selectedForm.value = null
+          break
+      }
+    }
+  },
+)
 
 function fetchData() {
   isLoading.value = true
@@ -43,11 +76,11 @@ function fetchData() {
     .then((res) => {
       if (res.status == 200) {
         data.value = []
+        allEventsFromBackend.value = res.data
 
         for (let respond of Object.values(res.data)) {
           data.value.push(...TransformDataFromBacked(respond))
         }
-        console.log(data.value)
         isLoading.value = false
       }
     })

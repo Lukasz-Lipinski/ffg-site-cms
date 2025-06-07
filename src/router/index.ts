@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import RegistrationVueView from '@/views/RegistrationVueView.vue'
 import { useUserStore } from '@/stores/user.ts'
 
@@ -12,12 +11,9 @@ const router = createRouter({
       component: RegistrationVueView,
       beforeEnter: (to, from, next) => {
         const userStore = useUserStore()
-
         if (userStore.user.id && from.path === '/') {
           next({ name: 'home' })
         }
-
-        next()
       },
     },
 

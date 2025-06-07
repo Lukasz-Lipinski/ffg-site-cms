@@ -3,7 +3,7 @@
   "events": [
     {
       "id": "123e4567-e89b-12d3-a456-426614174000",
-      "type": "gig",
+      "type": "events",
       "title": "Summer Rock Festival",
       "bands": [
         "The Rockers",
@@ -25,7 +25,7 @@
     },
     {
       "id": "223e4567-e89b-12d3-a456-426614174001",
-      "type": "concert",
+      "type": "events",
       "title": "Classical Night",
       "bands": [
         "Symphony Orchestra",
@@ -46,7 +46,7 @@
     },
     {
       "id": "323e4567-e89b-12d3-a456-426614174002",
-      "type": "festival",
+      "type": "events",
       "title": "Jazz in the Park",
       "bands": [
         "Jazz Quartet",
@@ -69,7 +69,7 @@
     },
     {
       "id": "423e4567-e89b-12d3-a456-426614174003",
-      "type": "gig",
+      "type": "events",
       "title": "Pop Music Night",
       "bands": [
         "Pop Stars",
@@ -181,7 +181,7 @@
             "name": "Bob Wilson",
             "email": "bob.wilson@example.com"
         },
-        "type": "seminar"
+        "type": "news"
     },
     {
         "id": "content-004",
