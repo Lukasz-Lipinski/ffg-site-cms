@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useForm } from 'vee-validate'
-import type { MerchType } from '@/components/Table/abstract.ts'
+import type { MerchType } from '@/components/Table/abstract'
 import { onBeforeMount } from 'vue'
-import { useSetFormData } from '@/composables/useForm.ts'
+import { useSetFormData } from '@/composables/useForm'
 
 const merchForm = useForm<Omit<MerchType, 'id'>>()
 const { formData } = useSetFormData<MerchType>()
