@@ -67,20 +67,17 @@ const isLoading = ref<boolean>(false)
 async function onVerify() {
   let isVerified = false
   isLoading.value = true
-
   try {
     const cred =
       isRegisterOption.value === FormOptions.Register
         ? await CreateNewAccount(emailInput.value, passwordInput.value)
         : await SignInUser(emailInput.value, passwordInput.value)
-
     if (cred) {
       userStore.setUser({
         email: cred.user.email ?? emailInput.value,
         id: cred.user.uid,
       })
     }
-
     isVerified = true
   } catch (e: any) {
     snackbarStore.show({

@@ -1,9 +1,9 @@
 <template>
-  <VContainer>
-    <VRow>
+  <VContainer fluid>
+    <VRow justify="end">
       <slot name="close-button"></slot>
     </VRow>
-    <VRow>
+    <VRow justify="center">
       <slot></slot>
     </VRow>
   </VContainer>
