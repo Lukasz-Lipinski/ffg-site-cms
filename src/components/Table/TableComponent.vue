@@ -7,7 +7,7 @@
         }"
         :items="data"
         :headers="headers"
-        no-data-text="Events added"
+        no-data-text="No eEvents added"
       >
         <template v-slot:item="{ item }">
           <tr @click="selectedItem = item" class="item">
@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeMount, onBeforeUpdate, ref, toRef, watch } from 'vue'
+import { onBeforeMount, ref, watch } from 'vue'
 import { type DataTableHeader } from 'vuetify/lib/components/VDataTable/types.mjs'
 import { SetHeaders } from './table.service'
 import type { EventType } from './abstract'

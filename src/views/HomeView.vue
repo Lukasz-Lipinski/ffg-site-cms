@@ -8,7 +8,7 @@
       :selectedItem="selectedItem"
     />
     <ErrorComponent v-else-if="errorMsg" :msg="errorMsg" @on-refresh="fetchData" />
-    <VDialog opacity="false" scrim="#212121" v-model="isOpenedModal">
+    <VDialog fullscreen opacity="false" scrim="#212121" v-model="isOpenedModal" contained>
       <template #default>
         <ModalForm :event="selectedItem">
           <template #close-button>

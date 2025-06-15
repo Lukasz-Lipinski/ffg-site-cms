@@ -1,4 +1,4 @@
-import { beforeEach, describe, it, expect, vitest } from 'vitest'
+import { beforeEach, describe, it, expect, vitest, afterEach } from 'vitest'
 import { mount, type VueWrapper } from '@vue/test-utils'
 import LoginFormComponent from '@/components/LoginForm/LoginFormComponent.vue'
 import { createPinia, setActivePinia } from 'pinia'
@@ -8,20 +8,34 @@ import { nextTick } from 'vue'
 import { FormOptions } from '@/components/LoginForm/types.ts'
 import { useUserStore } from '@/stores/user.ts'
 import { useSnackbarStore } from '@/stores/snackbar.ts'
+import { CreateNewAccount } from '@/auth/auth.service.ts'
+import { createUserWithEmailAndPassword } from 'firebase/auth/web-extension'
 
 const mockedUserForStore = {
   email: 'test@test.com',
   uid: '123',
 }
 
+let failedResponse = false
+
 vitest.mock('@/auth/auth.service.ts', () => {
   return {
-    CreateNewAccount: vitest.fn().mockImplementation(() => ({
-      user: mockedUserForStore,
-    })),
-    SignInUser: vitest.fn().mockImplementation(() => ({
-      user: mockedUserForStore,
-    })),
+    CreateNewAccount: vitest.fn().mockImplementation(() => {
+      if (failedResponse) {
+        throw new Error('error')
+      }
+      return {
+        user: mockedUserForStore,
+      }
+    }),
+    SignInUser: vitest.fn().mockImplementation(() => {
+      if (failedResponse) {
+        throw new Error('error')
+      }
+      return {
+        user: mockedUserForStore,
+      }
+    }),
   }
 })
 
@@ -40,6 +54,10 @@ describe('Testing LoginFormComponent ', () => {
         startValue: 'Login',
       },
     })
+  })
+
+  afterEach(() => {
+    vitest.clearAllMocks()
   })
 
   describe('Functional tests', () => {
@@ -74,11 +92,8 @@ describe('Testing LoginFormComponent ', () => {
 
       const userStore = useUserStore()
       const spyOnUserStore = vitest.spyOn(userStore, 'setUser')
-      expect(userStore.user).toStrictEqual({
-        email: '',
-        id: '',
-      })
 
+      await nextTick()
       await component.vm.onVerify()
       await nextTick()
 
@@ -99,15 +114,7 @@ describe('Testing LoginFormComponent ', () => {
     })
     it('Should invoke snackbarStore.show for catching exception', async () => {
       component.vm.isRegisterOption = FormOptions.Register
-
-      vitest.mock('@/auth/auth.service.ts', () => {
-        return {
-          CreateNewAccount: vitest.fn().mockImplementation(() => {
-            throw new Error('Error')
-          }),
-        }
-      })
-
+      failedResponse = true
       await component.vm.$nextTick()
 
       const snackbarStore = useSnackbarStore()

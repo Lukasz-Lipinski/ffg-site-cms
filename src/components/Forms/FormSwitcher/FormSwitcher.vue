@@ -10,26 +10,26 @@ const props = defineProps<{
   formName: FormType | null
 }>()
 
+const forms = [
+  {
+    name: 'MerchForm',
+    component: defineAsyncComponent(() => import('../MerchForm/MerchForm.vue')),
+  },
+  {
+    name: 'EventForm',
+    component: defineAsyncComponent(() => import('../EventForm/EventForm.vue')),
+  },
+
+  {
+    name: 'NewsForm',
+    component: defineAsyncComponent(() => import('../NewsForm/NewsForm.vue')),
+  },
+]
+
 let Form: Component
 
-function setForm(): Component {
-  const forms = [
-    {
-      name: 'MerchForm',
-      component: defineAsyncComponent(() => import('../MerchForm/MerchForm.vue')),
-    },
-    {
-      name: 'EventForm',
-      component: defineAsyncComponent(() => import('../EventForm/EventForm.vue')),
-    },
-
-    {
-      name: 'NewsForm',
-      component: defineAsyncComponent(() => import('../NewsForm/NewsForm.vue')),
-    },
-  ]
-  return (forms.find((form) => form.name === props.formName)?.component as Component) ?? null
-}
+const setForm = (): Component =>
+  (forms.find((form) => form.name === props.formName)?.component as Component) ?? null
 
 onBeforeMount(() => {
   Form = setForm()
