@@ -15,6 +15,7 @@
     "server": "npx json-server service/db.json"
   },
   "dependencies": {
+    "@vee-validate/yup": "^4.15.1",
     "axios": "^1.9.0",
     "firebase": "^11.8.1",
     "json-server": "^1.0.0-beta.3",

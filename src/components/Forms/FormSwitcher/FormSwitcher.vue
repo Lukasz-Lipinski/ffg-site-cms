@@ -1,14 +1,16 @@
 <template>
-  <Component :is="Form" />
+  <Component :is="Form" :title="title" />
 </template>
 
 <script setup lang="ts">
-import { type Component, defineAsyncComponent, onBeforeMount } from 'vue'
+import { type Component, defineAsyncComponent, onBeforeMount, ref } from 'vue'
 import type { FormType } from '@/components/Forms/FormSwitcher/abstracts'
 
 const props = defineProps<{
   formName: FormType | null
 }>()
+
+const title = ref<string>()
 
 const forms = [
   {
