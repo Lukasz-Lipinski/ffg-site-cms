@@ -8,8 +8,10 @@ export type LoggedUser = {
 
 export const useUserStore = defineStore('userStore', () => {
   const user = ref<LoggedUser>({
-    email: 'test@test.com',
-    id: 'ad',
+    // email: 'test@test.com',
+    // id: 'ad',
+    email: '',
+    id: '',
   })
 
   function setUser(cred: LoggedUser) {

@@ -8,16 +8,18 @@
       :selectedItem="selectedItem"
     />
     <ErrorComponent v-else-if="errorMsg" :msg="errorMsg" @on-refresh="fetchData" />
-    <VDialog fullscreen opacity="false" scrim="#212121" v-model="isOpenedModal" contained>
+    <VDialog offset="200" v-model="isOpenedModal" max-width="920px">
       <template #default>
-        <ModalForm :event="selectedItem">
-          <template #close-button>
-            <VBtn @click="onClose" variant="text" color="error" icon="mdi-close"></VBtn>
+        <VCard class="card-background">
+          <template #title>
+            <TitleTileComponent :formName="selectedForm!" @onClose="onClose" />
           </template>
-          <template #default>
-            <FormSwitcher :form-name="selectedForm!" />
-          </template>
-        </ModalForm>
+          <ModalForm :event="selectedItem" class="background">
+            <template #default>
+              <FormSwitcher :form-name="selectedForm!" />
+            </template>
+          </ModalForm>
+        </VCard>
       </template>
     </VDialog>
   </VContainer>
@@ -34,6 +36,7 @@ import { VContainer, VSkeletonLoader } from 'vuetify/components'
 import ModalForm from '@/components/Modal/Content/ModalForm.vue'
 import FormSwitcher from '@/components/Forms/FormSwitcher/FormSwitcher.vue'
 import type { FormType } from '@/components/Forms/FormSwitcher/abstracts.ts'
+import TitleTileComponent from '@/components/Modal/TitleTile/TitleTileComponent.vue'
 
 const data = ref<EventType[]>([])
 const allEventsFromBackend = ref<BackendDataType | null>(null)
@@ -98,3 +101,13 @@ onMounted(() => {
   fetchData()
 })
 </script>
+
+<style lang="css" scoped>
+.background {
+  background-color: #091418;
+}
+
+.card-background {
+  background-color: #0b212b;
+}
+</style>

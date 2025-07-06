@@ -1,8 +1,15 @@
-import { beforeEach, describe, expect, it } from 'vitest'
-import { mount, type VueWrapper } from '@vue/test-utils'
+import { afterEach, beforeEach, describe, expect, it, vitest } from 'vitest'
+import { shallowMount, type VueWrapper } from '@vue/test-utils'
 import EventForm from '@/components/Forms/EventForm/EventForm.vue'
 import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
+
 import { ref as mockRef } from 'vue'
+import { Field } from 'vee-validate'
+import BandsInput from '@/components/BandsInput/BandsInput.vue'
+import { VForm } from 'vuetify/components'
+import FooterComponent from '@/components/Footer/FooterComponent.vue'
 
 const mockedSelectedItem = mockRef({
   id: '123e4567-e89b-12d3-a456-426614174000',
@@ -202,20 +209,57 @@ const mockedAllEvents = mockRef({
   ],
 })
 
+const mockedUseForm = {
+  values: mockedAllEvents.value.events[0],
+  resetForm: vitest.fn(),
+}
+
+vitest.mock('vee-validate', async (importOriginal) => {
+  const actual = <any>await importOriginal()
+  return {
+    ...actual,
+    useForm: () => ({
+      ...actual.useForm(),
+      ...mockedUseForm,
+    }),
+  }
+})
+
 describe('EventForm Component tests', () => {
-  let component: VueWrapper<InstanceType<typeof EventForm>>
+  let component: VueWrapper<InstanceType<typeof EventForm & any>>
 
   beforeEach(() => {
-    component = mount(EventForm, {
+    component = shallowMount(EventForm, {
       global: {
-        plugins: [createVuetify()],
+        components: {
+          BandsInput,
+        },
+        plugins: [createVuetify({ components, directives })],
         stubs: {
-          VField: false,
-          VForm: false,
-          VBtn: false,
-          VRow: false,
-          VCol: false,
-          VLabel: false,
+          VForm: {
+            template: '<form><slot /></form>',
+          },
+          FormLayout: false,
+          VBtn: {
+            template: "<button class='v-btn'><slot /></button>",
+          },
+          VContainer: {
+            template: '<div class="v-container" ><slot /></div>',
+          },
+          VRow: {
+            template: '<div class="v-row"><slot /></div>',
+          },
+          VCol: {
+            template: '<div class="v-col"><slot /></div>',
+          },
+          VLabel: {
+            template: "<label class='v-field-label'><slot /></label>",
+          },
+          BandsInput: false,
+          FooterComponent: false,
+          VSlideGroup: {
+            template: '<div class="v-slide-group"><slot /></div>',
+          },
         },
         provide: {
           selectedItem: mockedSelectedItem,
@@ -225,12 +269,68 @@ describe('EventForm Component tests', () => {
     })
   })
   describe('DOM tests', () => {
+    afterEach(() => {
+      vitest.clearAllMocks()
+    })
+
     it('should be rendered', () => {
+      console.log(component.html())
       expect(component.exists()).toBeTruthy()
+    })
+    it('renders form', () => {
+      const form = component.findComponent(VForm)
+
+      expect(form.exists()).toBeTruthy()
+      expect((form.element as HTMLFormElement).children.length).greaterThan(0)
+    })
+    it('renders fulfilled fields with selected item data', () => {
+      const fields = component.findAllComponents(Field)
+      const bandsInput = component.findComponent(BandsInput)
+
+      expect(fields.length).toBe(8)
+      expect(bandsInput.exists()).toBeTruthy()
+      expect(bandsInput.vm.initialValues.length).toBe(3)
+    })
+    it('renders footer with 2 buttons', () => {
+      const footer = component.findComponent(FooterComponent)
+
+      expect(footer.exists()).toBeDefined()
+      expect(footer.findAll('button').length).toEqual(2)
     })
   })
 
   describe('Functional tests', () => {
-    it('')
+    afterEach(() => {
+      vitest.clearAllMocks()
+    })
+    it('left footer button invokes onSubmit', async () => {
+      const spyOnOnSubmit = vitest.spyOn(component.vm, 'onSubmit')
+
+      const footer = component.findComponent(FooterComponent).find('button#left-btn')
+
+      await footer.trigger('click')
+      await component.vm.$nextTick()
+
+      expect(spyOnOnSubmit).toHaveBeenCalledOnce()
+    })
+    it('right footer button invokes onReset', async () => {
+      const spyOnOnReset = vitest.spyOn(component.vm, 'onReset')
+
+      const footer = component.findComponent(FooterComponent).find('button#right-btn')
+
+      await footer.trigger('click')
+      await component.vm.$nextTick()
+
+      expect(spyOnOnReset).toHaveBeenCalledOnce()
+    })
+    it('onReset invokes resetForm', async () => {
+      component.vm.onReset = vitest.fn().mockImplementation(() => {
+        mockedUseForm.resetForm()
+      })
+      const spyOn = vitest.spyOn(mockedUseForm, 'resetForm')
+
+      component.vm.onReset()
+      expect(spyOn).toHaveBeenCalledOnce()
+    })
   })
 })
