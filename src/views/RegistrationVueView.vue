@@ -1,9 +1,13 @@
 <template>
   <VContainer height="100%" class="d-flex align-center justify-center">
-      <VContainer max-width="50%">
-        <h2 class="center text-h4 pb-8">{{ title }}</h2>
-        <LoginFormComponent @is-register-emitter.self="isRegister = $event" @is-success-verification="onRedirect" start-value="Login" />
-      </VContainer>
+    <VContainer max-width="50%">
+      <h2 class="text-center text-h4 pb-8">{{ title }}</h2>
+      <LoginFormComponent
+        @is-register-emitter.self="isRegister = $event"
+        @is-success-verification="onRedirect"
+        start-value="Login"
+      />
+    </VContainer>
   </VContainer>
 </template>
 
@@ -18,12 +22,11 @@ const isRegister = ref()
 const title = computed(() => (isRegister.value ? 'Sign up' : 'Login to your account'))
 
 function onRedirect(success: boolean) {
-  success && router.push(({
-    name: "home"
-  }))
+  success &&
+    router.push({
+      name: 'home',
+    })
 }
-
 </script>
 
-<style lang="css" scoped>
-</style>
+<style lang="css" scoped></style>
