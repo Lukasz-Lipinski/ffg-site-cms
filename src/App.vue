@@ -1,7 +1,9 @@
 <template>
   <VApp>
     <VMain>
-      <RouterView></RouterView>
+      <Suspense>
+        <RouterView></RouterView>
+      </Suspense>
     </VMain>
     <VSnackbar
       :timeout="snackbarStore.timeout"
@@ -19,20 +21,22 @@ import { useSnackbarStore } from './stores/snackbar.ts'
 import { watch } from 'vue'
 
 const snackbarStore = useSnackbarStore().snackbar
-let timer: any;
+let timer: any
 
-watch(() => snackbarStore.isShown,
+watch(
+  () => snackbarStore.isShown,
   (value) => {
-  if (value) {
-    timer = setTimeout(() => {
-      snackbarStore.isShown = false
-    }, snackbarStore.timeout)
-  }
+    if (value) {
+      timer = setTimeout(() => {
+        snackbarStore.isShown = false
+      }, snackbarStore.timeout)
+    }
 
-  return () => {
-    clearTimeout(timer)
-  }
-})
+    return () => {
+      clearTimeout(timer)
+    }
+  },
+)
 </script>
 
 <style lang=""></style>

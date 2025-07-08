@@ -38,7 +38,7 @@ export type EventFromBackendType = {
   bands: string[]
   eventDate: Date
   dateOfInsert: Date
-  dateOfUpdate?: Date
+  dateOfUpdate?: Date | string | number
   location: string
   price: number
   start: Date
@@ -49,17 +49,18 @@ export type EventFromBackendType = {
 
 export type NewsFromBackendType = {
   id: string
+  type: EventTypeType
   title: string
   description: string
   dateOfInsert: Date
   dateOfUpdate?: Date
   contentUrl: string
   addingEventUser: AddingEventUserType
-  type: EventTypeType
 }
 
 export type MerchFromBackendType = {
   id: string
+  type: EventTypeType
   title: string
   name: string
   price: number
@@ -69,7 +70,6 @@ export type MerchFromBackendType = {
   dateOfUpdate?: Date
   addingEventUser: AddingEventUserType
   productType: string
-  type: EventTypeType
 }
 
 export type BackendDataType = {

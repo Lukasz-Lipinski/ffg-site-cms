@@ -1,30 +1,35 @@
 <script setup lang="ts">
-import { useForm, Field, ErrorMessage } from 'vee-validate'
+import { useForm, Field, useIsFormValid } from 'vee-validate'
 import type { EventFromBackendType, EventType } from '@/components/Table/abstract'
 import { useFieldNames, useSetFormData } from '@/composables/useForm.ts'
-import { onBeforeMount } from 'vue'
+import { inject, onBeforeMount, type Ref } from 'vue'
 import * as yup from 'yup'
 import BandsInput from '@/components/BandsInput/BandsInput.vue'
 import FormLayout from '@/components/Forms/FormLayout/FormLayout.vue'
 import FooterComponent from '@/components/Footer/FooterComponent.vue'
+import axios from 'axios'
 
 const { formData } = useSetFormData<EventType>()
 const exceptions = ['id', 'dateOfInsert', 'dateOfUpdate', 'addingEventUser']
 const labelsAndFields = useFieldNames<EventFromBackendType>(exceptions)
-const { setValues, values, resetForm } = useForm<Omit<EventFromBackendType, 'id'>>()
+const { setValues, values, resetForm, isFieldValid } =
+  useForm<Omit<EventFromBackendType, 'id' | 'dateOfInsert' | 'dateOfUpdate' | 'addingEventUser'>>()
 
+const isFormValid = useIsFormValid()
 const validationSchemas = {
   title: yup.string().required().min(1).max(40),
   description: yup.string().required().min(1).max(200),
-  bands: yup.array().min(2).required(),
+  bands: (val: unknown) => (val as []).length > 2,
   date: yup.date().required(),
   time: yup.number().required().min(0).max(24),
   location: yup.string().required().min(1).max(20),
   price: (val: unknown) => {
-    return /\^(?!0\.00)[1-9]\d{0,2}(,\d{3})*(\.\d\d)/.test(val as string)
+    return /^\d+(\.\d{1,2})?$/.test(val as string)
   },
   status: yup.string().required(),
 }
+
+const selectedItem = inject<Ref<EventType>>('selectedItem')
 
 onBeforeMount(() => {
   if (formData.value) {
@@ -34,8 +39,17 @@ onBeforeMount(() => {
   }
 })
 
-function onSubmit() {
-  console.log(values)
+async function onSubmit() {
+  const data: EventFromBackendType = {
+    ...values,
+    id: selectedItem!.value!.id,
+    dateOfInsert: selectedItem!.value!.date,
+    dateOfUpdate: Date.now(),
+    addingEventUser: {
+      ...selectedItem!.value!.user,
+    },
+  }
+  await axios.put(`${import.meta.env.VITE_APP_API_URL}/events/${selectedItem!.value!.id}`, data)
 }
 
 function onReset() {
@@ -48,7 +62,7 @@ function onReset() {
     <template #form>
       <VForm class="d-flex flex-column event-form text-color">
         <template v-for="(laf, index) in labelsAndFields" :key="laf.label + index">
-          <VRow no-gutters>
+          <VRow :class="index === 8 ? '' : 'mb-5'" no-gutters>
             <BandsInput
               v-if="laf.label.toLowerCase() === 'bands'"
               :fieldDetails="laf"
@@ -56,10 +70,15 @@ function onReset() {
             ></BandsInput>
             <template v-else>
               <VCol cols="12">
-                <VLabel :text="laf.label" class="text-color font-weight-medium p-0" />
+                <VLabel
+                  :text="laf.label"
+                  class="text-color font-weight-medium p-0"
+                  :class="!isFieldValid(laf.field as any) && 'alert'"
+                />
               </VCol>
               <VCol>
                 <Field
+                  :class="!isFieldValid(laf.field as any) && 'alert invalid-input'"
                   class="field"
                   :label="laf.label"
                   :rules="validationSchemas[laf.field as keyof typeof validationSchemas]"
@@ -70,15 +89,14 @@ function onReset() {
               </VCol>
             </template>
           </VRow>
-          <VRow>
-            <ErrorMessage :name="laf.field" />
-          </VRow>
         </template>
       </VForm>
     </template>
     <template #actions>
       <FooterComponent
         center
+        space="6"
+        :is-left-button-disabled="isFormValid"
         left-button-label="Update"
         right-button-label="Delete"
         @left-button-action="onSubmit()"
@@ -95,6 +113,16 @@ function onReset() {
 
 .text-color {
   color: #dce9f1;
+}
+
+.invalid-input {
+  border-color: #ff4c4c !important;
+  background: #331111 !important;
+  outline: #ff4c4c !important;
+}
+
+.alert {
+  color: #ff4c4c !important;
 }
 
 .field {

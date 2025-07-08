@@ -37,18 +37,30 @@ function onDeleteBand(band: string) {
 </script>
 
 <template>
-  <div class="d-flex flex-column">
-    <span>
-      <VLabel :text="fieldDetails.label" />
-      <input ref="fieldRef" :type="fieldDetails.type" @keydown="onAddBand" />
-    </span>
-    <VChipGroup v-if="bands.size" mobile>
-      <VChip v-for="band of bands" :text="band">
-        <template #prepend>
-          <VBtn @click="onDeleteBand(band)" variant="text" color="error" icon="mdi-close"></VBtn>
-        </template>
-      </VChip>
-    </VChipGroup>
+  <div class="d-flex flex-column w-100">
+    <div class="d-flex w-100">
+      <VLabel :text="fieldDetails.label" class="label-min-w" />
+      <input ref="fieldRef" class="field" :type="fieldDetails.type" @keydown="onAddBand" />
+    </div>
+    <VContainer>
+      <VRow justify="center">
+        <VChipGroup v-if="bands.size" mobile>
+          <VChip v-for="band of bands" :text="band" @click="onDeleteBand(band)" />
+        </VChipGroup>
+      </VRow>
+    </VContainer>
   </div>
 </template>
-<style scoped lang="css"></style>
+<style scoped lang="css">
+.field {
+  border: 1px solid #37566f;
+  background-color: #0b212b;
+  border-radius: 5px;
+  padding: 12px 14px;
+  width: 100%;
+}
+
+.label-min-w {
+  min-width: 70px !important;
+}
+</style>

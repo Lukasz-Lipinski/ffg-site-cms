@@ -36,7 +36,7 @@ describe('Testing BandsInput Component', () => {
             template: '<div class="v-chip-group"><slot /></div>',
           },
           VChip: {
-            template: '<div class="v-chip"><slot name="prepend" /><slot /></div>',
+            template: '<div class="v-chip"><slot /></div>',
           },
         },
         plugins: [

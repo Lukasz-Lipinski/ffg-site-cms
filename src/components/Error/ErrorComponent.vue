@@ -30,7 +30,7 @@
 import { VAlert, VContainer, VBtn } from 'vuetify/components'
 
 defineProps<{
-  msg: string
+  msg: string | undefined
 }>()
 
 const emit = defineEmits(['onRefresh'])
