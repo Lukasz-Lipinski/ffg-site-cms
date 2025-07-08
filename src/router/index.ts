@@ -13,10 +13,11 @@ const router = createRouter({
         const userStore = useUserStore()
         if (userStore.user.id && from.path === '/') {
           next({ name: 'home' })
+          return
         }
+        next()
       },
     },
-
     {
       path: '/home',
       name: 'home',
