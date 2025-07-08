@@ -1,13 +1,13 @@
 <template>
   <VContainer>
-    <VSkeletonLoader v-if="!data?.length && isLoading" type="table" />
+    <VSkeletonLoader v-if="isLoading" type="table" />
     <TableComponent
-      v-else-if="data?.length && !isLoading"
-      :data="data"
+      v-else-if="events?.length && !isLoading && !errors"
+      :data="events"
       @selected-item="selectedItem = $event"
       :selectedItem="selectedItem"
     />
-    <ErrorComponent v-else-if="errorMsg" :msg="errorMsg" @on-refresh="fetchData" />
+    <ErrorComponent v-else-if="!!errors" :msg="errors" @onRefresh="onRefresh()" />
     <VDialog offset="200" v-model="isOpenedModal" max-width="920px">
       <template #default>
         <VCard class="card-background">
@@ -25,30 +25,27 @@
   </VContainer>
 </template>
 
-<script setup lang="ts">
+<script setup async lang="ts">
 import ErrorComponent from '@/components/Error/ErrorComponent.vue'
 import type { BackendDataType, EventType } from '@/components/Table/abstract'
-import { TransformDataFromBacked } from '@/components/Table/table.service'
 import TableComponent from '@/components/Table/TableComponent.vue'
-import axios from 'axios'
-import { computed, onMounted, provide, type Ref, ref, watch } from 'vue'
+import { computed, provide, type Ref, ref, watch } from 'vue'
 import { VContainer, VSkeletonLoader } from 'vuetify/components'
 import ModalForm from '@/components/Modal/Content/ModalForm.vue'
 import FormSwitcher from '@/components/Forms/FormSwitcher/FormSwitcher.vue'
 import type { FormType } from '@/components/Forms/FormSwitcher/abstracts.ts'
 import TitleTileComponent from '@/components/Modal/TitleTile/TitleTileComponent.vue'
+import { useFetchEvents } from '@/composables/useFetchData.ts'
 
-const data = ref<EventType[]>([])
-const allEventsFromBackend = ref<BackendDataType | null>(null)
-const errorMsg = ref<string | null>(null)
-const isLoading = ref<boolean>(false)
+const { events, isLoading, errors, allEventsFromBackend, onRefresh } = await useFetchEvents()
+
 const selectedItem = ref<EventType | null>(null)
 const selectedForm = ref<FormType | null>(null)
 
 const isOpenedModal = computed(() => !!selectedItem.value)
 
 provide<Ref<EventType | null>>('selectedItem', selectedItem)
-provide<Ref<BackendDataType | null>>('allEvents', allEventsFromBackend)
+provide<Ref<BackendDataType | undefined>>('allEvents', allEventsFromBackend)
 
 watch(
   () => selectedItem.value,
@@ -72,34 +69,9 @@ watch(
   },
 )
 
-function fetchData() {
-  isLoading.value = true
-  axios
-    .get<BackendDataType>(`${import.meta.env.VITE_APP_EVENTS_URL}/data`)
-    .then((res) => {
-      if (res.status == 200) {
-        data.value = []
-        allEventsFromBackend.value = res.data
-
-        for (let respond of Object.values(res.data)) {
-          data.value.push(...TransformDataFromBacked(respond))
-        }
-        isLoading.value = false
-      }
-    })
-    .catch((err) => {
-      errorMsg.value = err.message
-      isLoading.value = false
-    })
-}
-
 function onClose() {
   selectedItem.value = null
 }
-
-onMounted(() => {
-  fetchData()
-})
 </script>
 
 <style lang="css" scoped>

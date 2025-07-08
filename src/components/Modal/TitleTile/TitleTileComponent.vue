@@ -28,7 +28,7 @@ const title = computed(() => {
       @click="emit('onClose')"
       style="margin: 0"
       variant="text"
-      color="error"
+      color="#e74c3c"
       icon="mdi-close"
     />
   </div>
