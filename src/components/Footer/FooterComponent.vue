@@ -8,7 +8,7 @@ const props = defineProps<{
   isLeftButtonDisabled: boolean
   rightButtonLabel: string
   center?: boolean
-  space:
+  space?:
     | '1'
     | '2'
     | '3'

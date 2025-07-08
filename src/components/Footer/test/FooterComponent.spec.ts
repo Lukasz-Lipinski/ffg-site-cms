@@ -9,9 +9,10 @@ describe('Testing FooterComponent', () => {
     wrapper = shallowMount(FooterComponent, {
       props: {
         leftButtonLabel: 'Left Button',
+        isLeftButtonDisabled: false,
         rightButtonLabel: 'Right Button',
         center: true,
-        space: 12,
+        space: '12',
       },
       emits: {
         leftButtonAction: () => vi.fn(),
