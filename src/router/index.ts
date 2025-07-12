@@ -11,8 +11,8 @@ const router = createRouter({
       component: RegistrationVueView,
       beforeEnter: (to, from, next) => {
         const userStore = useUserStore()
-        if (userStore.user.id && from.path === '/') {
-          next({ name: 'home' })
+        if (userStore.user.id) {
+          next({ name: 'dashboard-home' })
           return
         }
         next()
@@ -20,12 +20,42 @@ const router = createRouter({
     },
     {
       path: '/home',
-      name: 'home',
-      component: () => import('../views/HomeView.vue'),
+      component: () => import('../views/DashboardView.vue'),
+      children: [
+        {
+          path: '',
+          name: 'dashboard-home',
+          component: import('../views/DashboardMainView.vue'),
+          beforeEnter: (to, from, next) => {
+            const userStore = useUserStore()
+            if (userStore.user.id) {
+              next()
+              return
+            }
+
+            next({ name: 'registration' })
+          },
+        },
+        {
+          path: '/new/:name',
+          name: 'add-item',
+          component: () => import('../views/AddNewItemView.vue'),
+          beforeEnter: (to, from, next) => {
+            const userStore = useUserStore()
+            if (userStore.user.id) {
+              next()
+              return
+            }
+
+            next({ name: 'registration' })
+          },
+        },
+      ],
       beforeEnter: (to, from, next) => {
         const userStore = useUserStore()
         if (userStore.user.id) {
           next()
+          return
         }
 
         next({ name: 'registration' })
