@@ -36,7 +36,7 @@ defineProps<{
 const emit = defineEmits(['onRefresh'])
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .center {
   display: flex;
   justify-content: center;

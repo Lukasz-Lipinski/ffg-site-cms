@@ -24,7 +24,7 @@ const title = computed(() => (isRegister.value ? 'Sign up' : 'Login to your acco
 function onRedirect(success: boolean) {
   success &&
     router.push({
-      name: 'home',
+      name: 'dashboard-home',
     })
 }
 </script>

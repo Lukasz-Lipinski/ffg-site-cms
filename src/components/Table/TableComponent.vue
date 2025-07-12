@@ -30,12 +30,12 @@ import type { EventType } from './abstract'
 
 type TablePropsType = {
   data: EventType[]
-  selectedItem: EventType | null
+  selectedItem: EventType | undefined
 }
 
 const headers = ref<DataTableHeader[]>([])
 const props = defineProps<TablePropsType>()
-const selectedItem = ref<EventType | null>(null)
+const selectedItem = ref<EventType | undefined>()
 const emits = defineEmits(['selectedItem'])
 
 onBeforeMount(() => {

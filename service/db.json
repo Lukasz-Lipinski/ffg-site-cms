@@ -5,13 +5,13 @@
       "type": "events",
       "title": "Summer Rock Festival",
       "bands": [
-        "The Rockers",
-        "Metal Band",
-        "Indie Group"
+        "test",
+        "kamilek",
+        "band 13"
       ],
       "eventDate": "2024-07-15",
-      "dateOfInsert": "2024-01-12",
-      "dateOfUpdate": 1751967113007,
+      "dateOfInsert": 1752313440052,
+      "dateOfUpdate": 1752313459994,
       "location": "Central Park Arena",
       "price": 49.99,
       "start": "2024-07-15T18:00:00",
