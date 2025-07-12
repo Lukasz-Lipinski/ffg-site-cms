@@ -36,7 +36,7 @@ describe('Testing Table Component', () => {
     wrapper = shallowMount(TableComponent, {
       props: {
         data: mockedData,
-        selectedItem: null,
+        selectedItem: undefined,
       },
       global: {
         plugins: [
