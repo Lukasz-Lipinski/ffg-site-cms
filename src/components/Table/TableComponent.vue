@@ -1,25 +1,25 @@
 <template>
-  <VContainer width="90%">
-    <VTable>
-      <VDataTable
-        :style="{
-          overflow: 'hidden',
-        }"
-        :items="data"
-        :headers="headers"
-        no-data-text="No eEvents added"
-      >
-        <template v-slot:item="{ item }">
-          <tr @click="selectedItem = item" class="item">
-            <td>{{ item.date }}</td>
-            <td>{{ item.user.name }}</td>
-            <td>{{ item.title }}</td>
-            <td>{{ item.type }}</td>
-          </tr>
-        </template>
-      </VDataTable>
-    </VTable>
-  </VContainer>
+  <VTable class="table-border">
+    <VDataTable
+      :style="{
+        overflow: 'hidden',
+      }"
+      class="table-data_box"
+      :items="data"
+      :headers="headers"
+      hover
+      no-data-text="No eEvents added"
+    >
+      <template v-slot:item="{ item }">
+        <tr @click="selectedItem = item" class="item">
+          <td>{{ item.date }}</td>
+          <td>{{ item.user.name }}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.type }}</td>
+        </tr>
+      </template>
+    </VDataTable>
+  </VTable>
 </template>
 
 <script lang="ts" setup>
@@ -60,7 +60,17 @@ watch(
 <style lang="css" scoped>
 .item:hover {
   cursor: pointer !important;
-  background-color: hsl(0, 0%, 52%);
   transition: background-color 0.3s ease;
+}
+
+.table-border {
+  background: linear-gradient(45deg, #082a69, #4e3060), padding-box;
+  border-radius: 24px;
+  padding: 2px;
+}
+
+.table-data_box {
+  padding: 12px 20px;
+  background: linear-gradient(90deg, #122443, #060716);
 }
 </style>
