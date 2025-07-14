@@ -1,13 +1,17 @@
 <template>
-  <MenuComponent />
-  <RouterView />
+  <VMain scrollable class="background_content">
+    <VContainer>
+      <MenuComponent />
+      <RouterView />
+    </VContainer>
+  </VMain>
   <VDialog offset="200" v-model="isOpenedModal" max-width="920px">
     <template #default>
-      <VCard class="card-background">
+      <VCard class="card-background_modal">
         <template #title>
           <TitleTileComponent :formName="selectedForm!" @onClose="onClose" />
         </template>
-        <ModalForm :event="selectedItem" class="background">
+        <ModalForm :event="selectedItem" class="background_modal">
           <template #default>
             <FormSwitcher :form-name="selectedForm!" />
           </template>
@@ -65,11 +69,15 @@ function onClose() {
 </script>
 
 <style lang="css" scoped>
-.background {
+.background_modal {
   background-color: #091418;
 }
 
-.card-background {
+.card-background_modal {
   background-color: #0b212b;
+}
+
+.background_content {
+  background: linear-gradient(90deg, #122443, #060716);
 }
 </style>

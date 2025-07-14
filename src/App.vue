@@ -1,10 +1,8 @@
 <template>
   <VApp>
-    <VMain>
-      <Suspense>
-        <RouterView></RouterView>
-      </Suspense>
-    </VMain>
+    <Suspense>
+      <RouterView></RouterView>
+    </Suspense>
     <VSnackbar
       :timeout="snackbarStore.timeout"
       :color="snackbarStore.color"
@@ -16,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import { VApp, VMain } from 'vuetify/components'
+import { VApp } from 'vuetify/components'
 import { useSnackbarStore } from './stores/snackbar.ts'
 import { watch } from 'vue'
 
