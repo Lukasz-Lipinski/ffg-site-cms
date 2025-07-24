@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import ErrorComponent from '@/components/Error/ErrorComponent.vue'
-import type { BackendDataType, EventFromBackendType, EventType } from '@/components/Table/abstract'
+import type { BackendDataType, EventType } from '@/components/Table/abstract'
 import { TransformDataFromBacked } from '@/components/Table/table.service'
 import TableComponent from '@/components/Table/TableComponent.vue'
 import axios from 'axios'
@@ -44,7 +44,7 @@ function fetchData() {
       if (res.status == 200) {
         data.value = []
 
-        for (let respond of Object.values(res.data)) {
+        for (const respond of Object.values(res.data)) {
           data.value.push(...TransformDataFromBacked(respond))
         }
         console.log(data.value)

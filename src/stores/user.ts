@@ -10,11 +10,8 @@ export const useUserStore = defineStore('userStore', () => {
   const user = ref<LoggedUser>({
     email: 'test@test.com',
     id: 'ad',
-<<<<<<< HEAD
     // email: '',
     // id: '',
-=======
->>>>>>> c6a6123 (new typo added)
   })
 
   function setUser(cred: LoggedUser) {

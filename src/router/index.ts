@@ -11,18 +11,10 @@ const router = createRouter({
       component: RegistrationVueView,
       beforeEnter: (to, from, next) => {
         const userStore = useUserStore()
-<<<<<<< HEAD
         if (userStore.user.id) {
           next({ name: 'dashboard-home' })
           return
         }
-=======
-
-        if (userStore.user.id && from.path === '/') {
-          next({ name: 'home' })
-        }
-
->>>>>>> c6a6123 (new typo added)
         next()
       },
     },
@@ -63,10 +55,7 @@ const router = createRouter({
         const userStore = useUserStore()
         if (userStore.user.id) {
           next()
-<<<<<<< HEAD
           return
-=======
->>>>>>> c6a6123 (new typo added)
         }
 
         next({ name: 'registration' })

@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-export type DataType = {}
-
->>>>>>> c6a6123 (new typo added)
 export type EventType = {
   id: string
   date: Date
@@ -33,11 +28,7 @@ export type AddingEventUserType = {
   email: string
 }
 
-<<<<<<< HEAD
 export type EventTypeType = 'events' | 'news' | 'merch'
-=======
-export type EventTypeType = 'gig' | 'news' | 'merch'
->>>>>>> c6a6123 (new typo added)
 
 //fetched from backend
 export type EventFromBackendType = {
@@ -58,28 +49,18 @@ export type EventFromBackendType = {
 
 export type NewsFromBackendType = {
   id: string
-<<<<<<< HEAD
   type: EventTypeType
-=======
->>>>>>> c6a6123 (new typo added)
   title: string
   description: string
   dateOfInsert: Date
   dateOfUpdate?: Date
   contentUrl: string
   addingEventUser: AddingEventUserType
-<<<<<<< HEAD
-=======
-  type: EventTypeType
->>>>>>> c6a6123 (new typo added)
 }
 
 export type MerchFromBackendType = {
   id: string
-<<<<<<< HEAD
   type: EventTypeType
-=======
->>>>>>> c6a6123 (new typo added)
   title: string
   name: string
   price: number
@@ -89,10 +70,6 @@ export type MerchFromBackendType = {
   dateOfUpdate?: Date
   addingEventUser: AddingEventUserType
   productType: string
-<<<<<<< HEAD
-=======
-  type: EventTypeType
->>>>>>> c6a6123 (new typo added)
 }
 
 export type BackendDataType = {

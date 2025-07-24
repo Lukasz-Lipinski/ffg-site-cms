@@ -23,18 +23,14 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeMount, onBeforeUpdate, ref, toRef, watch } from 'vue'
+import { onBeforeMount, ref, watch } from 'vue'
 import { type DataTableHeader } from 'vuetify/lib/components/VDataTable/types.mjs'
 import { SetHeaders } from './table.service'
 import type { EventType } from './abstract'
 
 type TablePropsType = {
   data: EventType[]
-<<<<<<< HEAD
   selectedItem: EventType | undefined
-=======
-  selectedItem: EventType | null
->>>>>>> c6a6123 (new typo added)
 }
 
 const headers = ref<DataTableHeader[]>([])

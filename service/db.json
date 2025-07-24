@@ -1,5 +1,4 @@
 {
-  "data": {
   "events": [
     {
       "id": "123e4567-e89b-12d3-a456-426614174000",
@@ -143,7 +142,6 @@
   ],
   "news": [
     {
-<<<<<<< HEAD
       "id": "content-001",
       "type": "news",
       "title": "Getting Started with TypeScript",
@@ -198,61 +196,4 @@
       "type": "news"
     }
   ]
-=======
-        "id": "content-001",
-        "title": "Getting Started with TypeScript",
-        "description": "A comprehensive guide to TypeScript fundamentals, including types, interfaces, and advanced features. Learn how to build scalable applications with TypeScript.",
-        "dateOfInsert": "2024-01-15",
-        "dateOfUpdate": "2024-01-16",
-        "contentUrl": "https://example.com/content/typescript-guide",
-        "addingEventUser": {
-            "id": "usr-001",
-            "name": "John Doe",
-            "email": "john.doe@example.com"
-        },
-        "type": "news"
-    },
-    {
-        "id": "content-002",
-        "title": "Modern JavaScript Development",
-        "description": "Explore modern JavaScript features and best practices. This guide covers ES6+ features, async programming, and modern development workflows.",
-        "dateOfInsert": "2024-01-10",
-        "contentUrl": "https://example.com/content/modern-javascript",
-        "addingEventUser": {
-            "id": "usr-002",
-            "name": "Jane Smith",
-            "email": "jane.smith@example.com"
-        },
-        "type": "news"
-    },
-    {
-        "id": "content-003",
-        "title": "Advanced React Patterns",
-        "description": "Deep dive into advanced React patterns including hooks, context, and performance optimization techniques for building efficient React applications.",
-        "dateOfInsert": "2024-01-20",
-        "dateOfUpdate": "2024-01-21",
-        "contentUrl": "https://example.com/content/react-patterns",
-        "addingEventUser": {
-            "id": "usr-003",
-            "name": "Bob Wilson",
-            "email": "bob.wilson@example.com"
-        },
-        "type": "seminar"
-    },
-    {
-        "id": "content-004",
-        "title": "Cloud Architecture Fundamentals",
-        "description": "Learn the core concepts of cloud architecture, including scalability, reliability, and best practices for cloud-native applications.",
-        "dateOfInsert": "2024-01-22",
-        "contentUrl": "https://example.com/content/cloud-architecture",
-        "addingEventUser": {
-            "id": "usr-004",
-            "name": "Alice Johnson",
-            "email": "alice.johnson@example.com"
-        },
-        "type": "news"
-    }
-]
-  }
->>>>>>> c6a6123 (new typo added)
 }
