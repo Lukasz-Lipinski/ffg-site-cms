@@ -1,0 +1,258 @@
+{
+  "data": {
+  "events": [
+    {
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "type": "events",
+      "title": "Summer Rock Festival",
+      "bands": [
+        "test",
+        "kamilek",
+        "band 13"
+      ],
+      "eventDate": "2024-07-15",
+      "dateOfInsert": "2024-01-20",
+      "dateOfUpdate": "2024-02-01",
+      "location": "Central Park Arena",
+      "price": 49.99,
+      "start": "2024-07-15T18:00:00",
+      "linkToEvent": "https://example.com/events/summer-rock-festival",
+      "addingEventUser": {
+        "name": "John Smith",
+        "email": "john.smith@example.com"
+      },
+      "linkToBuyTickets": "https://example.com/tickets/summer-rock-festival"
+    },
+    {
+      "id": "223e4567-e89b-12d3-a456-426614174001",
+      "type": "events",
+      "title": "Classical Night",
+      "bands": [
+        "Symphony Orchestra",
+        "Chamber Ensemble"
+      ],
+      "eventDate": "2024-08-20",
+      "dateOfInsert": "2024-01-15",
+      "dateOfUpdate": "2024-01-15",
+      "location": "Grand Concert Hall",
+      "price": 75,
+      "start": "2024-08-20T19:30:00",
+      "linkToEvent": "https://example.com/events/classical-night",
+      "addingEventUser": {
+        "name": "Mary Johnson",
+        "email": "mary.j@example.com"
+      },
+      "linkToBuyTickets": "https://example.com/tickets/classical-night"
+    },
+    {
+      "id": "323e4567-e89b-12d3-a456-426614174002",
+      "type": "events",
+      "title": "Jazz in the Park",
+      "bands": [
+        "Jazz Quartet",
+        "Blues Band",
+        "Swing Ensemble",
+        "Jazz Orchestra"
+      ],
+      "eventDate": "2024-09-05",
+      "dateOfInsert": "2024-01-20",
+      "dateOfUpdate": "2024-01-22",
+      "location": "City Park",
+      "price": 35.5,
+      "start": "2024-09-05T16:00:00",
+      "linkToEvent": "https://example.com/events/jazz-in-the-park",
+      "addingEventUser": {
+        "name": "Robert Wilson",
+        "email": "r.wilson@example.com"
+      },
+      "linkToBuyTickets": "https://example.com/tickets/jazz-in-the-park"
+    },
+    {
+      "id": "423e4567-e89b-12d3-a456-426614174003",
+      "type": "events",
+      "title": "Pop Music Night",
+      "bands": [
+        "Pop Stars",
+        "Teen Sensation",
+        "Electronic Duo"
+      ],
+      "eventDate": "2024-10-12",
+      "dateOfInsert": "2024-02-01",
+      "dateOfUpdate": "2024-02-01",
+      "location": "Stadium Arena",
+      "price": 89.99,
+      "start": "2024-10-12T20:00:00",
+      "linkToEvent": "https://example.com/events/pop-music-night",
+      "addingEventUser": {
+        "name": "Sarah Brown",
+        "email": "sarah.b@example.com"
+      },
+      "linkToBuyTickets": "https://example.com/tickets/pop-music-night"
+    }
+  ],
+  "merch": [
+    {
+      "id": "evt-001",
+      "title": "Advanced TypeScript Workshop",
+      "name": "TypeScript 2024",
+      "price": 299.99,
+      "imageUrl": "https://example.com/images/typescript-workshop.jpg",
+      "linkToBuy": "https://example.com/buy/typescript-workshop",
+      "dateOfInsert": "2024-01-15",
+      "dateOfUpdate": "2024-01-16",
+      "addingEventUser": {
+        "id": "usr-001",
+        "name": "John Doe",
+        "email": "john.doe@example.com"
+      },
+      "productType": "hat",
+      "type": "merch"
+    },
+    {
+      "id": "evt-002",
+      "title": "Web Development Conference",
+      "name": "WebDev Summit",
+      "price": 499.99,
+      "imageUrl": "https://example.com/images/webdev-conf.jpg",
+      "linkToBuy": "https://example.com/buy/webdev-conference",
+      "dateOfInsert": "2024-01-10",
+      "addingEventUser": {
+        "id": "usr-002",
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com"
+      },
+      "productType": "pants",
+      "type": "merch"
+    },
+    {
+      "id": "evt-003",
+      "title": "React Best Practices",
+      "name": "React Mastery",
+      "price": 199.99,
+      "imageUrl": "https://example.com/images/react-seminar.jpg",
+      "dateOfInsert": "2024-01-20",
+      "dateOfUpdate": "2024-01-21",
+      "addingEventUser": {
+        "id": "usr-003",
+        "name": "Bob Wilson",
+        "email": "bob.wilson@example.com"
+      },
+      "productType": "t-shirt",
+      "type": "merch"
+    }
+  ],
+  "news": [
+    {
+<<<<<<< HEAD
+      "id": "content-001",
+      "type": "news",
+      "title": "Getting Started with TypeScript",
+      "description": "A comprehensive guide to TypeScript fundamentals, including types, interfaces, and advanced features. Learn how to build scalable applications with TypeScript.",
+      "dateOfInsert": "2024-01-15",
+      "dateOfUpdate": "2024-01-16",
+      "contentUrl": "https://example.com/content/typescript-guide",
+      "addingEventUser": {
+        "id": "usr-001",
+        "name": "John Doe",
+        "email": "john.doe@example.com"
+      }
+    },
+    {
+      "id": "content-002",
+      "title": "Modern JavaScript Development",
+      "description": "Explore modern JavaScript features and best practices. This guide covers ES6+ features, async programming, and modern development workflows.",
+      "dateOfInsert": "2024-01-10",
+      "contentUrl": "https://example.com/content/modern-javascript",
+      "addingEventUser": {
+        "id": "usr-002",
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com"
+      },
+      "type": "news"
+    },
+    {
+      "id": "content-003",
+      "title": "Advanced React Patterns",
+      "description": "Deep dive into advanced React patterns including hooks, context, and performance optimization techniques for building efficient React applications.",
+      "dateOfInsert": "2024-01-20",
+      "dateOfUpdate": "2024-01-21",
+      "contentUrl": "https://example.com/content/react-patterns",
+      "addingEventUser": {
+        "id": "usr-003",
+        "name": "Bob Wilson",
+        "email": "bob.wilson@example.com"
+      },
+      "type": "news"
+    },
+    {
+      "id": "content-004",
+      "title": "Cloud Architecture Fundamentals",
+      "description": "Learn the core concepts of cloud architecture, including scalability, reliability, and best practices for cloud-native applications.",
+      "dateOfInsert": "2024-01-22",
+      "contentUrl": "https://example.com/content/cloud-architecture",
+      "addingEventUser": {
+        "id": "usr-004",
+        "name": "Alice Johnson",
+        "email": "alice.johnson@example.com"
+      },
+      "type": "news"
+    }
+  ]
+=======
+        "id": "content-001",
+        "title": "Getting Started with TypeScript",
+        "description": "A comprehensive guide to TypeScript fundamentals, including types, interfaces, and advanced features. Learn how to build scalable applications with TypeScript.",
+        "dateOfInsert": "2024-01-15",
+        "dateOfUpdate": "2024-01-16",
+        "contentUrl": "https://example.com/content/typescript-guide",
+        "addingEventUser": {
+            "id": "usr-001",
+            "name": "John Doe",
+            "email": "john.doe@example.com"
+        },
+        "type": "news"
+    },
+    {
+        "id": "content-002",
+        "title": "Modern JavaScript Development",
+        "description": "Explore modern JavaScript features and best practices. This guide covers ES6+ features, async programming, and modern development workflows.",
+        "dateOfInsert": "2024-01-10",
+        "contentUrl": "https://example.com/content/modern-javascript",
+        "addingEventUser": {
+            "id": "usr-002",
+            "name": "Jane Smith",
+            "email": "jane.smith@example.com"
+        },
+        "type": "news"
+    },
+    {
+        "id": "content-003",
+        "title": "Advanced React Patterns",
+        "description": "Deep dive into advanced React patterns including hooks, context, and performance optimization techniques for building efficient React applications.",
+        "dateOfInsert": "2024-01-20",
+        "dateOfUpdate": "2024-01-21",
+        "contentUrl": "https://example.com/content/react-patterns",
+        "addingEventUser": {
+            "id": "usr-003",
+            "name": "Bob Wilson",
+            "email": "bob.wilson@example.com"
+        },
+        "type": "seminar"
+    },
+    {
+        "id": "content-004",
+        "title": "Cloud Architecture Fundamentals",
+        "description": "Learn the core concepts of cloud architecture, including scalability, reliability, and best practices for cloud-native applications.",
+        "dateOfInsert": "2024-01-22",
+        "contentUrl": "https://example.com/content/cloud-architecture",
+        "addingEventUser": {
+            "id": "usr-004",
+            "name": "Alice Johnson",
+            "email": "alice.johnson@example.com"
+        },
+        "type": "news"
+    }
+]
+  }
+>>>>>>> c6a6123 (new typo added)
+}

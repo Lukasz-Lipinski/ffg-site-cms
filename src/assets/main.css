@@ -1,0 +1,21 @@
+@import './base.css';
+
+#app {
+  font-weight: normal;
+}
+
+html {
+  overflow-y: hidden !important;
+}
+<<<<<<< HEAD
+
+.v-application {
+  background: linear-gradient(
+    145deg,
+    #0B0E1A 0%,     /* Deep navy black */
+    #10172A 50%,    /* Dark bluish-gray */
+    #0F1323 100%    /* Soft bluish-black tone */
+  )  !important
+}
+=======
+>>>>>>> c6a6123 (new typo added)
