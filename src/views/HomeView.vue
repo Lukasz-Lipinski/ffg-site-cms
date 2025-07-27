@@ -47,7 +47,6 @@ function fetchData() {
         for (const respond of Object.values(res.data)) {
           data.value.push(...TransformDataFromBacked(respond))
         }
-        console.log(data.value)
         isLoading.value = false
       }
     })
@@ -58,7 +57,7 @@ function fetchData() {
 }
 
 function onClose() {
-  selectedItem.value = null
+  selectedItem.value = undefined
 }
 
 onMounted(() => {
