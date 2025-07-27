@@ -41,7 +41,7 @@ const mockedRoutes: RouteRecordRaw[] = [
 
 describe('MenuComponent tests', () => {
   let wrapper: VueWrapper<InstanceType<typeof MenuComponent | any>>
-  let router = createRouter({
+  const router = createRouter({
     history: createWebHistory(),
     routes: mockedRoutes,
   })

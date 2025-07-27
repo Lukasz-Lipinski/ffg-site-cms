@@ -5,13 +5,13 @@
       "type": "events",
       "title": "Summer Rock Festival",
       "bands": [
-        "test",
         "kamilek",
-        "band 13"
+        "band 13",
+        "behemoth test"
       ],
       "eventDate": "2024-07-15",
-      "dateOfInsert": "2024-01-20",
-      "dateOfUpdate": "2024-02-01",
+      "dateOfInsert": 1753645487216,
+      "dateOfUpdate": 1753645506183,
       "location": "Central Park Arena",
       "price": 49.99,
       "start": "2024-07-15T18:00:00",
