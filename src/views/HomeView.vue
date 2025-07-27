@@ -33,7 +33,7 @@ import ModalForm from '@/components/Modal/Content/ModalForm.vue'
 const data = ref<EventType[]>([])
 const errorMsg = ref<string | null>(null)
 const isLoading = ref<boolean>(false)
-const selectedItem = ref<EventType | null>(null)
+const selectedItem = ref<EventType | undefined>(undefined)
 const isOpenedModal = computed(() => !!selectedItem.value)
 
 function fetchData() {
