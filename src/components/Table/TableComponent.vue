@@ -8,10 +8,10 @@
       :items="data"
       :headers="headers"
       hover
-      no-data-text="No eEvents added"
+      no-data-text="No Events added"
     >
       <template v-slot:item="{ item }">
-        <tr @click="selectedItem = item" class="item">
+        <tr @click="selectedTableItem = item" class="item">
           <td>{{ item.date }}</td>
           <td>{{ item.user.name }}</td>
           <td>{{ item.title }}</td>
@@ -35,7 +35,7 @@ type TablePropsType = {
 
 const headers = ref<DataTableHeader[]>([])
 const props = defineProps<TablePropsType>()
-const selectedItem = ref<EventType | undefined>()
+const selectedTableItem = ref<EventType | undefined>()
 const emits = defineEmits(['selectedItem'])
 
 onBeforeMount(() => {
@@ -45,14 +45,14 @@ onBeforeMount(() => {
 watch(
   () => props.selectedItem,
   () => {
-    selectedItem.value = props.selectedItem
+    selectedTableItem.value = props.selectedItem
   },
 )
 
 watch(
-  () => selectedItem.value,
+  () => selectedTableItem.value,
   () => {
-    emits('selectedItem', selectedItem.value)
+    emits('selectedItem', selectedTableItem.value)
   },
 )
 </script>
